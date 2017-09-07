@@ -18,7 +18,7 @@ VS Code, GitHub
 <br/>
 
 # **Getting Started**
-Click here to view the [Pitch Deck]
+Click here to view the [Pitch Deck](https://docs.google.com/presentation/d/19SyyWBI4RDc9e7lA6yz4_VymbqY50iSbx45CXNXbfvI/edit?usp=sharing)
 <br/>
 Click here to view the [Trello Board](https://trello.com/b/kcDtswHz/project-4-policy-manager)
 <br/>
