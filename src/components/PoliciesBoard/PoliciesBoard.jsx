@@ -11,8 +11,20 @@ const PoliciesBoard = (props) => {
   return (
     <div className="PoliciesBoard">
       {props.guesses.map((guess, idx) => 
-        <PoliciesBoard
+        {/* <PoliciesBoard
         />
+        <CoverageGL
+        />
+        <CoverageProp
+        />
+        <CoverageBA
+        />
+        <CoverageWC
+        />
+        <CoverageExcessUmb
+        />
+        <CoverageEPLI
+        /> */}
       )}
     </div>
   );

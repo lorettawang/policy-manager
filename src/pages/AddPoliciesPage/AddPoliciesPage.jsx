@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './AddPoliciesPage.css';
+import NavBar from '../../components/NavBar/NavBar';
 // import PoliciesForm from '../../components/PoliciesForm/PoliciesForm';
 // import CoverageGL from '../../components/CoverageGL/CoverageGL';
 // import CoverageProp from '../../components/CoverageProp/CoverageProp';
@@ -7,6 +7,8 @@ import './AddPoliciesPage.css';
 // import CoverageWC from '../../components/CoverageWC/CoverageWC';
 // import CoverageExcessUmb from '../../components/CoverageExcessUmb/CoverageExcessUmb';
 // import CoverageEPLI from '../../components/CoverageEPLI/CoverageEPLI';
+import tokenService from './../../utils/tokenService';
+import './AddPoliciesPage.css';
 
 class AddPoliciesPage extends Component {
   constructor() {
@@ -19,8 +21,13 @@ class AddPoliciesPage extends Component {
   render() {
     return (
       <div className='AddPoliciesPage'>
-        <header className="header-footer">Add Policies</header>
-        <a href='/'>Return</a><br />
+        <NavBar 
+          user={this.props.user}
+          handleLogout={this.props.handleLogout}
+        />
+        {/* <PoliciesBoard
+        /> */}
+        <a href='/policies'>Return</a><br />
       </div>
     );
   }

@@ -8,58 +8,68 @@ class PoliciesForm extends Component {
     this.state = {};
   }
 
-  handleChange = (field, e) => {
-    this.props.updateMessage('');
-    this.setState({
-      // Using ES2015 Computed Property Names
-      [field]: e.target.value
-    });
-  }
+  // handleChange = (field, e) => {
+  //   this.props.updateMessage('');
+  //   this.setState({
+  //     // Using ES2015 Computed Property Names
+  //     [field]: e.target.value
+  //   });
+  // }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    userService.signup(this.state)
-      // successfully signed up - show GamePage
-      .then(() => {
-        this.props.handleSignup();
-        this.props.history.push('/');
-      })
-      // invalid user data
-      .catch(err => this.props.updateMessage(err.message));
-  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   userService.signup(this.state)
+  //     // successfully signed up - show GamePage
+  //     .then(() => {
+  //       this.props.handleSignup();
+  //       this.props.history.push('/');
+  //     })
+  //     // invalid user data
+  //     .catch(err => this.props.updateMessage(err.message));
+  // }
 
   isFormInvalid() {
-    return !(this.state.name && this.state.email && this.state.password === this.state.passwordConf);
+    return !(this.state.genAgg && this.state.products && this.state.eachOcc && this.state.personalAdInj && this.state.damageRented && this.state.medExp);
   }
 
   render() {
     return (
       <div>
-        <header className="header-footer">Sign Up</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit} >
+        <header className="header-footer">General Liability</header>
+        <form className="form-horizontal" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="Name" value={this.state.name} onChange={(e) => this.handleChange('name', e)} />
+              <input type="text" className="form-control" placeholder="General Aggregate" value={this.state.genAgg} onChange={(e) => this.handleChange('genAgg', e)} />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="email" className="form-control" placeholder="Email" value={this.state.email} onChange={(e) => this.handleChange('email', e)} />
+              <input type="email" className="form-control" placeholder="Products - Comp/Op Agg" value={this.state.products} onChange={(e) => this.handleChange('products', e)} />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Password" value={this.state.password} onChange={(e) => this.handleChange('password', e)} />
+              <input type="password" className="form-control" placeholder="Each Occurrence" value={this.state.eachOcc} onChange={(e) => this.handleChange('eachOcc', e)} />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Confirm Password" value={this.state.passwordConf} onChange={(e) => this.handleChange('passwordConf', e)} />
+              <input type="password" className="form-control" placeholder="Personal & Adv Injury" value={this.state.personalAdInj} onChange={(e) => this.handleChange('personalAdInj', e)} />
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="col-sm-12">
+              <input type="password" className="form-control" placeholder="Damage to Rented Premises" value={this.state.damageRented} onChange={(e) => this.handleChange('damageRented', e)} />
+            </div>
+          </div>
+            <div className="form-group">
+              <div className="col-sm-12">
+                <input type="password" className="form-control" placeholder="Medical Expense" value={this.state.medExp} onChange={(e) => this.handleChange('medExp', e)} />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default" disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
+              <button className="btn btn-default" disabled={this.isFormInvalid()}>Add Policy</button>&nbsp;&nbsp;
               <Link to='/'>Cancel</Link>
             </div>
           </div>

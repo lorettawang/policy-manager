@@ -22,7 +22,7 @@ Click here to view the [Pitch Deck]
 <br/>
 Click here to view the [Trello Board](https://trello.com/b/kcDtswHz/project-4-policy-manager)
 <br/>
-Click here to view the [Policy Manager App]
+Click here to view the [Policy Manager App](https://policy-manager.herokuapp.com/)
 <br/>
 
 # **Next Steps**
@@ -43,12 +43,12 @@ Icebox:
 
 # **Closing Statements**
 <center> 
-<img src="https://media.giphy.com/media/3o6ZtlGkjeschymLNm/giphy.gif" style="width: 400px">
+<div style="text-align:center"><img src="https://media.giphy.com/media/3o6ZtlGkjeschymLNm/giphy.gif" style="width: 400px">
 <br>
-<img src="https://media.giphy.com/media/ENagATV1Gr9eg/giphy.gif" style="width: 400px">
+<div style="text-align:center"><img src="https://media.giphy.com/media/ENagATV1Gr9eg/giphy.gif" style="width: 400px">
 <br>
-<img src="https://media.giphy.com/media/87NS05bya11mg/giphy.gif" style="width: 400px">
+<div style="text-align:center"><img src="https://media.giphy.com/media/87NS05bya11mg/giphy.gif" style="width: 400px">
 <br>
-<img src="https://media.giphy.com/media/13py6c5BSnBkic/giphy.gif" style="width: 400px">
+<div style="text-align:center"><img src="https://media.giphy.com/media/13py6c5BSnBkic/giphy.gif" style="width: 400px">
 <br>
-<img src="https://media.giphy.com/media/3owzVWemUV63IBD3eU/giphy.gif" style="width: 400px">
+<div style="text-align:center"><img src="https://media.giphy.com/media/3owzVWemUV63IBD3eU/giphy.gif" style="width: 400px">
