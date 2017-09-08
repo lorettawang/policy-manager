@@ -6,6 +6,7 @@ import {
     Redirect
 } from 'react-router-dom';
 import './App.css';
+import NavBar from '../../components/NavBar/NavBar';
 import PoliciesPage from '../PoliciesPage/PoliciesPage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -15,7 +16,9 @@ import userService from '../../utils/userService';
 class App extends Component {
   constructor (props) {
     super(props);
-    this.state = {}
+    this.state = {
+      user: userService.getUser()
+    }
   }
 
 /*---------- Helper Methods ----------*/
@@ -50,6 +53,10 @@ class App extends Component {
         <header className="App-header">Policy Manager</header>
         <Router>
           <Switch>
+            {/* <NavBar 
+              user={this.state.user} 
+              handleLogout={this.handleLogout}
+            /> */}
             <Route exact path='/' render={() =>
               <PoliciesPage
                 handleAddPoliciesButton={this.handleAddPoliciesButton}
@@ -69,6 +76,23 @@ class App extends Component {
                 handleLogin={this.handleLogin}
               />
             }/>
+            <Route exact path='/addpolicies' render={(props) => (
+                userService.getUser() ?
+                <AddPoliciesPage 
+                  history={props.history} 
+                />
+                :
+                <Redirect to ='./login' />
+            )}/>
+            <Route exact path='/policy' render={(props) => (
+                userService.getUser() ?
+                <PoliciesPage 
+                  policies={this.state.policies} 
+                />
+                :
+                <Redirect to ='./login' />
+              )}/> 
+          } 
             <Route exact path='/policies' render={() => (
               userService.getUser() ?
                 <PoliciesPage

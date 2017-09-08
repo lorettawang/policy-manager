@@ -8,21 +8,20 @@ function signup(user) {
   })
   .then(res => {
     if (res.ok) return res.json();
-    throw new Error('This email is already taken!');
+    throw new Error('Email already taken!');
   })
-  // Parameter destructuring!
   .then(({token}) => token);
 }
-
-function login(user) {
+//now i'm just going through and changing 
+function login(creds) {
   return fetch(BASE_URL + 'login', {
     method: 'POST',
     headers: new Headers({'Content-Type': 'application/json'}),
-    body: JSON.stringify(user)
+    body: JSON.stringify(creds)
   })
   .then(res => {
     if (res.ok) return res.json();
-    throw new Error('Bad credentials. Please try again.');
+    throw new Error('Bad credentials');
   })
   .then(({token}) => token);
 }
