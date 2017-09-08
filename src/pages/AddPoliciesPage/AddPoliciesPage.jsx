@@ -101,6 +101,7 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateGen(e)}}
                 value={this.props.newGen}
           />
+          <label htmlFor="occ">Each Occurrence</label>
           <input id="occ" 
              type="text" 
              required 
@@ -108,6 +109,7 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateOcc(e)}}
                 value={this.props.newOcc}
           />
+          <label htmlFor="prod">Products - Comp/Op Aggregate</label>
           <input id="prod" 
              type="text" 
              required 
@@ -115,6 +117,7 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateOcc(e)}}
                 value={this.props.newProd}
           />
+          <label htmlFor="pers">Personal and Adv Injury</label>
           <input id="pers" 
              type="text" 
              required 
@@ -122,6 +125,7 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updatePers(e)}}
                 value={this.props.newPers}
           />
+          <label htmlFor="damage">Damage To Rented Premises</label>
           <input id="damage" 
              type="text" 
              required 
@@ -129,7 +133,8 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateDamage(e)}}
                 value={this.props.newDamage}
           />
-          <input id="occ" 
+          <label htmlFor="med">Med Exp</label>
+          <input id="med" 
              type="text" 
              required 
              defaultValue={this.state.med} 
