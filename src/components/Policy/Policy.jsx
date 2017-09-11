@@ -1,4 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import policyService from '../../utils/policyService';
+import tokenService from '../../utils/tokenService';
+import './Policy.css'
 
 const Policy = (props) => {
     return (
@@ -15,9 +19,11 @@ const Policy = (props) => {
             <br/>
             Med Expense: {props.policy.med}
             <br/>
+            <button className="btn submit-btn-default" onClick={this.deletePolicy}>Delete Policy</button>
+            <br/>
             <br/>
         </div>
-    );
-}
+        )
+    };
 
 export default Policy;

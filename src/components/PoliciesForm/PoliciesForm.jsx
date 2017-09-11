@@ -40,6 +40,10 @@ class PoliciesForm extends Component {
     });
   }
 
+  isFormInvalid() {
+    return !(this.state.gen && this.state.occ && this.state.prod && this.state.pers && this.state.damage && this.state.med);
+  }
+
   updateGen = (e) => {
     this.setState({
       gen: e.target.value
@@ -48,31 +52,31 @@ class PoliciesForm extends Component {
 
   updateOcc = (e) => {
     this.setState ({
-      gen: e.target.value
+      occ: e.target.value
     })
   }
 
   updateProd = (e) => {
     this.setState ({
-      gen: e.target.value
+      prod: e.target.value
     })
   }
 
   updatePers = (e) => {
     this.setState ({
-      gen: e.target.value
+      pers: e.target.value
     })
   }
 
   updateDamage = (e) => {
     this.setState ({
-      gen: e.target.value
+      damage: e.target.value
     })
   }
 
   updateMed = (e) => {
     this.setState ({
-      gen: e.target.value
+      med: e.target.value
     })
   }
 
@@ -98,15 +102,19 @@ class PoliciesForm extends Component {
   }
   
   deletePolicy(e) {
-    e.preventDefault()
-    API.fetchDeletePolicy(this.state)
-        .then((policy) => {
-          this.props.history.push('/policies');
-
-        })
-        .catch(err => {
-          console.log('err =', err)
-        })
+    e.preventDefault();
+    fetch('/api/policies', {
+        method: 'DELETE',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }),
+        body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(() => {
+        this.props.history.push('/policies');
+    })
   }
 
   render() {
@@ -139,7 +147,7 @@ class PoliciesForm extends Component {
              type="text" 
              required 
              defaultValue={this.state.prod} 
-                onChange={(e)=>{this.updateOcc(e)}}
+                onChange={(e)=>{this.updateProd(e)}}
                 value={this.props.newProd}
           />
           <br/>
@@ -174,7 +182,7 @@ class PoliciesForm extends Component {
           />
           <br/>
           <br/>
-          <button className="btn submit-btn-default" onClick={this.handleSubmit}>Submit</button>
+          <button className="btn submit-btn-default" onClick={this.handleSubmit}>Add Policy</button>
         </form>
       </div>
     )

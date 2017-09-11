@@ -1,18 +1,42 @@
 import tokenService from './tokenService'
 
-function getPoliciesForUser() {
-  return (
-            fetch('/api/policies', {
-                method: 'get',
-                headers: new Headers({'Authorization': 'Bearer ' + tokenService.getToken()})
-                //don't need the other part of the header
-            })
-            .then(response => response.json())
-            .then(policies => policies)
-        )
-}
+const BASE_URL = '/api/policies/';
 
+function index() {
+    return fetch(BASE_URL, {
+        method: "GET",
+        headers: new Headers({'Authorization': 'Bearer ' + tokenService.getToken()})
+    })
+    .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('Bad credentials');
+    });
+};
+
+function create(body) {
+    return fetch(BASE_URL, {
+        method: "POST",
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }),
+        body: JSON.stringify(body)
+    })
+    .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('Entry Failed');
+    })
+};
+
+function deletePolicy(id) {
+    fetch(BASE_URL + id, {
+        method: "DELETE",
+        headers: new Headers({'Authorization': 'Bearer ' + tokenService.getToken()})
+    })
+};
 
 export default {
-  getPoliciesForUser,
-}
+    index,
+    create,
+    delete: deletePolicy
+};

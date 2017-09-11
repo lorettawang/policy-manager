@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../../models/policy');
+var Policy = require ('../../models/policy');
 var policiesCtrl = require('../../controllers/policies');
 
 /*---------- Public Routes ----------*/
