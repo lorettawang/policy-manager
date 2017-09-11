@@ -26,6 +26,11 @@ const AddPoliciesPage = (props) => {
       <PoliciesForm
         history={props.history}
       />
+      <div>
+        <center><Link className='btn btn-default' to='/'>Back</Link>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link className='btn btn-default' to='/policies'>View Policies</Link></center>
+      </div>
     </div>
   );
 };

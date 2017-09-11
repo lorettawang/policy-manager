@@ -45,7 +45,9 @@ class PoliciesPage extends Component {
                 />
                 )}
                 <div>
-                    <Link className='btn btn-default' to='/addpolicies'><center>Back</center></Link>
+                    <center><Link className='btn btn-default' to='/'>Back</Link>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Link className='btn btn-default' to='/addpolicies'>Add Policies</Link></center>
                 </div>
             </div>
         );
