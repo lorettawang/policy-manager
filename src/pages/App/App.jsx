@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {
     BrowserRouter as Router,
     Switch,
@@ -7,6 +8,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import NavBar from '../../components/NavBar/NavBar';
+import LandingPage from '../LandingPage/LandingPage';
 import PoliciesPage from '../PoliciesPage/PoliciesPage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -25,6 +27,16 @@ class App extends Component {
 
 
 /*---------- Callback Methods ----------*/
+
+  addPolicy = (policy) => {
+    this.setState ({
+      Policies: [...this.state.Policies]
+    })
+  }
+
+  deletePolicy = (policy) => {
+
+  }
 
   handleLogout = () => {
     userService.logout();
@@ -57,11 +69,14 @@ class App extends Component {
               user={this.state.user} 
               handleLogout={this.handleLogout}
             /> */}
-            <Route exact path='/' render={() =>
-              <PoliciesPage
-                handleAddPoliciesButton={this.handleAddPoliciesButton}
+            <Route exact path='/' render={(props) => 
+              <LandingPage
                 user={this.state.user}
                 handleLogout={this.handleLogout}
+                history={props.history}
+                policies={this.state.policies}
+                addPolicy={this.addPolicy}
+                deletePolicy={this.deletePolicy}
               />
             }/>
             <Route exact path='/signup' render={(props) => 
@@ -92,6 +107,7 @@ class App extends Component {
                   user={this.state.user}
                   handleLogout={this.handleLogout}
                   policies={this.state.policies} 
+                  addPolicy={this.addPolicy}
                 />
                 :
                 <Redirect to='/login' />

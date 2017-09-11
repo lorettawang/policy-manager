@@ -3,30 +3,21 @@ const User = require('../models/user')
 var jwt = require('jsonwebtoken');
 var SECRET= process.env.SECRET;
 
-function create(req, res) {
-    Policy.create(req.body)
-    .then(policy => {
-        User.findById(req.user._id).then(user => {
-            user.policies.push(policies._id)
-            user.save(function() {
-            })
-        });
-    })
-    .catch(err => {
-        res.json({error: err});
+function index(req, res) {
+    Policy.find({}).populate('user').exec().then((policies) => {
+       res.status(200).json(policies);
     });
 };
 
-function index(req, res) {
-    User.findById(req.user._id).populate('policies')
-    .then(user => {
-      res.json(user.policies);
-    });
-  }
+function create(req, res) {
+    var policy = new Policy(req.body);
+    policy.user = req.user._id;
+    policy.save(() => res.json(policy));
+};
   
   function deletePolicy(req, res) {
     User.findById(req.user._id, (err, user) => {
-      user.policies.remove(req.params.id);
+    user.policies.id(req.params.id).remove();
       user.save(err => {
         res.status(200).json(err);
       })
@@ -36,5 +27,5 @@ function index(req, res) {
 module.exports = {
     index,
     create,
-    deletePolicy
+    delete: deletePolicy
 }

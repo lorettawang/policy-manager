@@ -1,82 +1,185 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import NavBar from '../../components/NavBar/NavBar';
+import API from '../../API/API';
 import userService from '../../utils/userService';
+import tokenService from '../../utils/tokenService';
 
 class PoliciesForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      gen: "",
+      occ: "",
+      prod: "",
+      pers: "",
+      damage: "",
+      med: ""
+    };
   }
 
-  // handleChange = (field, e) => {
-  //   this.props.updateMessage('');
-  //   this.setState({
-  //     // Using ES2015 Computed Property Names
-  //     [field]: e.target.value
-  //   });
-  // }
+  handleChange = (field, e) => {
+    this.setState({
+      [field]: e.target.value
+    });
+  }
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   userService.signup(this.state)
-  //     // successfully signed up - show GamePage
-  //     .then(() => {
-  //       this.props.handleSignup();
-  //       this.props.history.push('/');
-  //     })
-  //     // invalid user data
-  //     .catch(err => this.props.updateMessage(err.message));
-  // }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('/api/policies', {
+        method: 'POST',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }),
+        body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(() => {
+        this.props.history.push('/policies');
+    });
+  }
 
-  isFormInvalid() {
-    return !(this.state.genAgg && this.state.products && this.state.eachOcc && this.state.personalAdInj && this.state.damageRented && this.state.medExp);
+  updateGen = (e) => {
+    this.setState({
+      gen: e.target.value
+    })
+  }
+
+  updateOcc = (e) => {
+    this.setState ({
+      gen: e.target.value
+    })
+  }
+
+  updateProd = (e) => {
+    this.setState ({
+      gen: e.target.value
+    })
+  }
+
+  updatePers = (e) => {
+    this.setState ({
+      gen: e.target.value
+    })
+  }
+
+  updateDamage = (e) => {
+    this.setState ({
+      gen: e.target.value
+    })
+  }
+
+  updateMed = (e) => {
+    this.setState ({
+      gen: e.target.value
+    })
+  }
+
+  updatePolicy = (e) => {
+    this.setState ({
+    })
+  }
+
+  addPolicy(e) {
+    e.preventDefault();
+    fetch('/api/policies', {
+        method: 'POST',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }),
+        body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(() => {
+        this.props.history.push('/policies');
+    })
+  }
+  
+  deletePolicy(e) {
+    e.preventDefault()
+    API.fetchDeletePolicy(this.state)
+        .then((policy) => {
+          this.props.history.push('/policies');
+
+        })
+        .catch(err => {
+          console.log('err =', err)
+        })
   }
 
   render() {
     return (
-      <div>
-        <header className="header-footer">General Liability</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="General Aggregate" value={this.state.genAgg} onChange={(e) => this.handleChange('genAgg', e)} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="email" className="form-control" placeholder="Products - Comp/Op Agg" value={this.state.products} onChange={(e) => this.handleChange('products', e)} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Each Occurrence" value={this.state.eachOcc} onChange={(e) => this.handleChange('eachOcc', e)} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Personal & Adv Injury" value={this.state.personalAdInj} onChange={(e) => this.handleChange('personalAdInj', e)} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Damage to Rented Premises" value={this.state.damageRented} onChange={(e) => this.handleChange('damageRented', e)} />
-            </div>
-          </div>
-            <div className="form-group">
-              <div className="col-sm-12">
-                <input type="password" className="form-control" placeholder="Medical Expense" value={this.state.medExp} onChange={(e) => this.handleChange('medExp', e)} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12 text-center">
-              <button className="btn btn-default" disabled={this.isFormInvalid()}>Add Policy</button>&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
-            </div>
-          </div>
+      <div className='AddPoliciesPage'>
+        <form className="create" onSubmit={(e) => {this.create(e)}}>
+          <label htmlFor="gen">General Aggregate </label>
+          <br/>
+          <input id="gen" 
+             type="text" 
+             required 
+             defaultValue={this.state.gen} 
+                onChange={(e)=>{this.updateGen(e)}}
+                value={this.props.newGen}
+          />
+          <br/>
+          <label htmlFor="occ">Each Occurrence </label>
+          <br/>
+          <input id="occ" 
+             type="text" 
+             required 
+             defaultValue={this.state.occ} 
+                onChange={(e)=>{this.updateOcc(e)}}
+                value={this.props.newOcc}
+          />
+          <br/>
+          <label htmlFor="prod">Products - Comp/Op Aggregate </label>
+          <br/>
+          <input id="prod" 
+             type="text" 
+             required 
+             defaultValue={this.state.prod} 
+                onChange={(e)=>{this.updateOcc(e)}}
+                value={this.props.newProd}
+          />
+          <br/>
+          <label htmlFor="pers">Personal and Adv Injury </label>
+          <br/>
+          <input id="pers" 
+             type="text" 
+             required 
+             defaultValue={this.state.pers} 
+                onChange={(e)=>{this.updatePers(e)}}
+                value={this.props.newPers}
+          />
+          <br/>
+          <label htmlFor="damage">Damage To Rented Premises </label>
+          <br/>
+          <input id="damage" 
+             type="text" 
+             required 
+             defaultValue={this.state.damage} 
+                onChange={(e)=>{this.updateDamage(e)}}
+                value={this.props.newDamage}
+          />
+          <br/>
+          <label htmlFor="med">Med Expense </label>
+          <br/>
+          <input id="med" 
+             type="text" 
+             required 
+             defaultValue={this.state.med} 
+                onChange={(e)=>{this.updateMed(e)}}
+                value={this.props.newMed}
+          />
+          <br/>
+          <br/>
+          <button className="btn submit-btn-default" onClick={this.handleSubmit}>Submit</button>
         </form>
       </div>
-    );
+    )
   }
-};
+}
+
 
 export default PoliciesForm;

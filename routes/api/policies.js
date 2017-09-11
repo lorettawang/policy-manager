@@ -9,13 +9,11 @@ var policiesCtrl = require('../../controllers/policies');
 /*---------- Protected Routes ----------*/
 router.get('/', checkAuth, policiesCtrl.index);
 router.post('/', checkAuth, policiesCtrl.create);
-router.delete('/:id', policiesCtrl.deletePolicy);
-
+router.delete('/:id', checkAuth, policiesCtrl.delete);
 
 /*----- Helper Functions -----*/
 
 function checkAuth(req, res, next) {
-  console.log('Smerge', req.user)
   if (req.user) return next();
   return res.status(401).json({msg: 'not authenticated'});
 }
