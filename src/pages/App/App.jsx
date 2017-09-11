@@ -80,24 +80,18 @@ class App extends Component {
                 userService.getUser() ?
                 <AddPoliciesPage 
                   history={props.history} 
+                  user={this.state.user}
+                  handleLogout={this.handleLogout}
                 />
                 :
                 <Redirect to ='./login' />
             )}/>
-            <Route exact path='/policy' render={(props) => (
-                userService.getUser() ?
-                <PoliciesPage 
-                  policies={this.state.policies} 
-                />
-                :
-                <Redirect to ='./login' />
-              )}/> 
-          } 
             <Route exact path='/policies' render={() => (
               userService.getUser() ?
                 <PoliciesPage
                   user={this.state.user}
                   handleLogout={this.handleLogout}
+                  policies={this.state.policies} 
                 />
                 :
                 <Redirect to='/login' />

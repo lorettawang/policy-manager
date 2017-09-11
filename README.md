@@ -40,15 +40,3 @@ Icebox:
 * Feature to add calendar and/or to-do list
 
 * After features are implemented, name can be changed to Business Manager
-
-# **Closing Statements**
-<center> 
-<div style="text-align:center"><img src="https://media.giphy.com/media/3o6ZtlGkjeschymLNm/giphy.gif" style="width: 400px">
-<br>
-<div style="text-align:center"><img src="https://media.giphy.com/media/ENagATV1Gr9eg/giphy.gif" style="width: 400px">
-<br>
-<div style="text-align:center"><img src="https://media.giphy.com/media/87NS05bya11mg/giphy.gif" style="width: 400px">
-<br>
-<div style="text-align:center"><img src="https://media.giphy.com/media/13py6c5BSnBkic/giphy.gif" style="width: 400px">
-<br>
-<div style="text-align:center"><img src="https://media.giphy.com/media/3owzVWemUV63IBD3eU/giphy.gif" style="width: 400px">

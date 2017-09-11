@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import API from '../../API/API';
 import AddPoliciesButton from '../../components/AddPoliciesButton/AddPoliciesButton';
@@ -9,12 +10,13 @@ import AddPoliciesButton from '../../components/AddPoliciesButton/AddPoliciesBut
 // import CoverageWC from '../../components/CoverageWC/CoverageWC';
 // import CoverageExcessUmb from '../../components/CoverageExcessUmb/CoverageExcessUmb';
 // import CoverageEPLI from '../../components/CoverageEPLI/CoverageEPLI';
+import userService from '../../utils/userService';
 import tokenService from './../../utils/tokenService';
 import './AddPoliciesPage.css';
 
 export class AddPoliciesPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       gen: "",
       occ: "",
@@ -32,52 +34,62 @@ export class AddPoliciesPage extends Component {
   }
 
   updateOcc = (e) => {
-    this.setState({
+    this.setState ({
       gen: e.target.value
     })
   }
 
   updateProd = (e) => {
-    this.setState({
+    this.setState ({
       gen: e.target.value
     })
   }
 
   updatePers = (e) => {
-    this.setState({
+    this.setState ({
       gen: e.target.value
     })
   }
 
   updateDamage = (e) => {
-    this.setState({
+    this.setState ({
       gen: e.target.value
     })
   }
 
   updateMed = (e) => {
-    this.setState({
+    this.setState ({
       gen: e.target.value
     })
   }
 
-  addPolicy(e) {
-    e.preventDefault()
-    API.fetchAddPolicy(this.state)
-        .then((policy) => {
-          this.props.history.push('/policy');
-
-        })
-        .catch(err => {
-          console.log('err =', err)
-        })
+  updatePolicy = (e) => {
+    this.setState ({
+    })
   }
+
+  addPolicy(e) {
+    e.preventDefault();
+    fetch('/api/policies', {
+        method: 'POST',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }),
+        body: JSON.stringify(this.state)
+    })
+    .then(res => res.json())
+    .then(() => {
+        this.props.history.push('/policies');
+    })
+  }
+  
 
   deletePolicy(e) {
     e.preventDefault()
     API.fetchDeletePolicy(this.state)
         .then((policy) => {
-          this.props.history.push('/policy');
+          this.props.history.push('/policies');
 
         })
         .catch(err => {
@@ -92,8 +104,10 @@ export class AddPoliciesPage extends Component {
           user={this.props.user}
           handleLogout={this.props.handleLogout}
         />
+
         <form className="addPolicy" onSubmit={(e) => {this.addPolicy(e)}}>
-          <label htmlFor="gen">General Aggregate</label>
+          <label htmlFor="gen">General Aggregate </label>
+          <br/>
           <input id="gen" 
              type="text" 
              required 
@@ -101,7 +115,9 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateGen(e)}}
                 value={this.props.newGen}
           />
-          <label htmlFor="occ">Each Occurrence</label>
+          <br/>
+          <label htmlFor="occ">Each Occurrence </label>
+          <br/>
           <input id="occ" 
              type="text" 
              required 
@@ -109,7 +125,9 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateOcc(e)}}
                 value={this.props.newOcc}
           />
-          <label htmlFor="prod">Products - Comp/Op Aggregate</label>
+          <br/>
+          <label htmlFor="prod">Products - Comp/Op Aggregate </label>
+          <br/>
           <input id="prod" 
              type="text" 
              required 
@@ -117,7 +135,9 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateOcc(e)}}
                 value={this.props.newProd}
           />
-          <label htmlFor="pers">Personal and Adv Injury</label>
+          <br/>
+          <label htmlFor="pers">Personal and Adv Injury </label>
+          <br/>
           <input id="pers" 
              type="text" 
              required 
@@ -125,7 +145,9 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updatePers(e)}}
                 value={this.props.newPers}
           />
-          <label htmlFor="damage">Damage To Rented Premises</label>
+          <br/>
+          <label htmlFor="damage">Damage To Rented Premises </label>
+          <br/>
           <input id="damage" 
              type="text" 
              required 
@@ -133,7 +155,9 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateDamage(e)}}
                 value={this.props.newDamage}
           />
-          <label htmlFor="med">Med Exp</label>
+          <br/>
+          <label htmlFor="med">Med Expense </label>
+          <br/>
           <input id="med" 
              type="text" 
              required 
@@ -141,7 +165,9 @@ export class AddPoliciesPage extends Component {
                 onChange={(e)=>{this.updateMed(e)}}
                 value={this.props.newMed}
           />
-          <button type="submit" className="btn btn-success"><AddPoliciesButton/></button>
+          <br/>
+          <br/>
+          <button className="btn submit-btn-default" onClick={this.handleSubmit}>Submit</button>
         </form>
       </div>
     )
