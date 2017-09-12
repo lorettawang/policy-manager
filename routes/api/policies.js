@@ -9,7 +9,7 @@ var policiesCtrl = require('../../controllers/policies');
 
 /*---------- Protected Routes ----------*/
 router.get('/', checkAuth, policiesCtrl.index);
-router.post('/', checkAuth, policiesCtrl.create);
+router.post('/:id', checkAuth, policiesCtrl.create);
 router.delete('/:id', checkAuth, policiesCtrl.delete);
 
 /*----- Helper Functions -----*/

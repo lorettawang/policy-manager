@@ -24,33 +24,33 @@ class PoliciesPage extends Component {
         headers: new Headers({'Authorization': 'Bearer ' + tokenService.getToken()})
       })
       .then(res => res.json())
-      .then(policies => {
-        this.setState({policies});
+      .then(user => {
+        this.setState({policies: [...user.policy]});
       });
     }
 
-    // deletePolicy(policy) {
-    //     var index = this.state.policies.indexOf(policy);
-    //     var newArray = [...this.state.policies];
-    //     newArray.splice(index, 1);
-    //     this.setState({policies: [...newArray]});
-    // };
+    deletePolicy= (policy) => {
+        var index = this.state.policies.indexOf(policy);
+        var newArray = [...this.state.policies];
+        newArray.splice(index, 1);
+        this.setState({policies: [...newArray]});
+    };
 
-    deletePolicy(e) {
-        e.preventDefault();
-        fetch('/api/policies', {
-            method: 'DELETE',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + tokenService.getToken()
-            }),
-            body: JSON.stringify(this.state)
-        })
-        .then(res => res.json())
-        .then(() => {
-            this.props.history.push('/policies');
-        })
-      }
+    // deletePolicy(e) {
+    //     e.preventDefault();
+    //     fetch('/api/policies', {
+    //         method: 'DELETE',
+    //         headers: new Headers({
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer ' + tokenService.getToken()
+    //         }),
+    //         body: JSON.stringify(this.state)
+    //     })
+    //     .then(res => res.json())
+    //     .then(() => {
+    //         this.props.history.push('/policies');
+    //     })
+    //   }
 
     render() {
         return (

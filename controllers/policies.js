@@ -5,28 +5,36 @@ var jwt = require('jsonwebtoken');
 var SECRET= process.env.SECRET;
 
 function index(req, res) {
-    Policy.find({}).then(policies => res.json(policies));
+    User.findById(req.user._id)
+    .populate('policy')
+    .exec((err, user) => {
+        res.status(200).json(user);
+    })
 }
 
 function create(req, res) {
-    var policy = new Policy(req.body);
-    policy.user = req.user._id;
-    policy.save((err, policy) => {
-        res.json(policy);
-    });
-};
-
-function deletePolicy(req, res) {
-    User.findById(req.user._id, (err, user) => {
-        user.policies.id(req.params.id).remove()
-        user.save(() => {
-            Policy.findById(req.params.id, (err, policy) => {
-                policy.remove();
-                res.status(200);
+    Policy.findById(req.params.id, (err, policy) => {
+        policy = new Policy(req.body);
+        policy.save((err, policy) => {
+            User.findById(req.user._id, (err, user) => {
+                user.policy.push(policy._id);
+                user.save((err, savedUser) => {
+                    res.status(200).json(policy);
+                })
             })
         })
+
     })
 }
+
+function deletePolicy(req, res) {
+    console.log("request", req);
+        Policy.findById(req.params.id, (err, policy) => {
+            policy.remove();
+            policy.save();
+            res.status(200);
+            })
+        }
 
 module.exports = {
     index,

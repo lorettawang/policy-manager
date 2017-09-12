@@ -10,30 +10,51 @@ import './Policy.css'
 class Policy extends Component {
     constructor(props) {
         super(props);
-        this.state= {
-        };
+        this.state= {};
     }
 
-    handleDelete = () => {
-        policyService.delete(this.props.policy._id);
-    }
+    // handleUpdate = () => {
 
-    deletePolicy(e) {
-        e.preventDefault();
-        fetch(`/api/policies/${this.props.policy._id}`, {
+    // }
+
+    // updatePolicy(e) {
+
+    // }
+
+    // handleDelete = () => {
+    //     policyService.delete(this.props.policy._id);
+    // }
+
+    // deletePolicy(e) {
+    //     e.preventDefault();
+    //     fetch(`/api/policies/${this.props.policy._id}`, {
+    //         method: 'DELETE',
+    //         headers: new Headers ({
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer ' + tokenService.getToken()
+    //         }),
+    //     })
+    //     .this(res => res.json())
+    //     .then(() => {
+    //         this.props.history.push('/policies');
+    //     })
+    // }
+
+
+    handleDelete = (policy) => {
+        this.props.deletePolicy(policy);
+        fetch(`/api/policies/${policy._id}`, {
             method: 'DELETE',
-            headers: new Headers ({
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + tokenService.getToken()
-            }),
+            headers: new Headers
+                ({'Authorization': 'Bearer ' + tokenService.getToken()})
         })
-        .this(res => res.json())
-        .then(() => {
-            this.props.history.push('/policies');
-        })
+            .then(res => res.json())
+            .then(res => {
+                this.props.history.push('/policies');
+            })
     }
 
-    render(props) {            
+    render() {            
         return (
                 <div className="Policy">
                     General Aggregate: {this.props.policy.gen}
@@ -48,7 +69,10 @@ class Policy extends Component {
                     <br/>
                     Med Expense: {this.props.policy.med}
                     <br/>
-                    <button className="btn submit-btn-default" onClick={this.handleDelete}>Delete Policy</button>
+                    <button className="btn submit-btn-default" onClick={this.updatePolicy}>Edit Policy</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {/* <button className="btn submit-btn-default" onClick={this.deletePolicy}>Delete Policy</button> */}
+                    <button className="btn submit-btn-default" onClick={() => this.handleDelete(this.props.policy)}>Delete Policy</button>
                     <br/>
                     <br/>
                 </div>

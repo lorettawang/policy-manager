@@ -25,7 +25,7 @@ class PoliciesForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/api/policies', {
+    fetch(`/api/policies/${e._id}`, {
         method: 'POST',
         headers: new Headers({
             'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ class PoliciesForm extends Component {
 
   addPolicy(e) {
     e.preventDefault();
-    fetch('/api/policies', {
+    fetch(`/api/policies/${e._id}`, {
         method: 'POST',
         headers: new Headers({
             'Content-Type': 'application/json',
@@ -181,6 +181,8 @@ class PoliciesForm extends Component {
           />
           <br/>
           <br/>
+          {/* <button className="btn submit-btn-default" onClick={this.handleChange}>Update Policy</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
           <button className="btn submit-btn-default" onClick={this.handleSubmit}>Add Policy</button>
         </form>
       </div>
