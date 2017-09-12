@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-import API from '../../API/API';
 import PoliciesPage from '../PoliciesPage/PoliciesPage';
 import PoliciesForm from '../../components/PoliciesForm/PoliciesForm';
 import AddPoliciesButton from '../../components/AddPoliciesButton/AddPoliciesButton';

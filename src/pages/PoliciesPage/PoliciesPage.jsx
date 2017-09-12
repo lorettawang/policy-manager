@@ -5,7 +5,6 @@ import Policy from '../../components/Policy/Policy';
 import NavBar from '../../components/NavBar/NavBar';
 import PoliciesForm from '../../components/PoliciesForm/PoliciesForm';
 import policyService from '../../utils/policyService';
-import API from '../../API/API';
 import PoliciesBoard from '../../components/PoliciesBoard/PoliciesBoard';
 import AddPoliciesButton from '../../components/AddPoliciesButton/AddPoliciesButton';
 import userService from '../../utils/userService';
@@ -60,7 +59,7 @@ class PoliciesPage extends Component {
                 <Policy 
                     policy={policy} 
                     key={policy._id}
-                    deletePolicy={this.state.deletePolicy}
+                    deletePolicy={this.deletePolicy}
                 />
                 )}
                 <div>

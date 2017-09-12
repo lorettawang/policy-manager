@@ -2,18 +2,16 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import policyService from '../../utils/policyService';
 import NavBar from '../../components/NavBar/NavBar';
-import API from '../../API/API';
 import PoliciesForm from '../../components/PoliciesForm/PoliciesForm';
 import userService from '../../utils/userService';
 import tokenService from '../../utils/tokenService';
 import './Policy.css'
 
 class Policy extends Component {
-    constructor() {
-      super();
-      this.state = {
-        policies: []
-      }
+    constructor(props) { 
+        super(props);
+        this.state = {      
+        };
     }
 
     deletePolicy(e) {

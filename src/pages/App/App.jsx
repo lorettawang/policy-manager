@@ -19,6 +19,7 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      policies: [],
       user: userService.getUser()
     }
   }
@@ -35,6 +36,9 @@ class App extends Component {
   }
 
   deletePolicy = (policy) => {
+    this.setState ({
+      Policies: [...this.state]
+    })
 
   }
 
