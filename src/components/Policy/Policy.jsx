@@ -8,8 +8,29 @@ import tokenService from '../../utils/tokenService';
 import './Policy.css'
 
 class Policy extends Component {
+    constructor(props) {
+        super(props);
+        this.state= {
+        };
+    }
+
     handleDelete = () => {
         policyService.delete(this.props.policy._id);
+    }
+
+    deletePolicy(e) {
+        e.preventDefault();
+        fetch(`/api/policies/${this.props.policy._id}`, {
+            method: 'DELETE',
+            headers: new Headers ({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + tokenService.getToken()
+            }),
+        })
+        .this(res => res.json())
+        .then(() => {
+            this.props.history.push('/policies');
+        })
     }
 
     render(props) {            
