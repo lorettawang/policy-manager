@@ -10,8 +10,6 @@ import AddPoliciesButton from '../../components/AddPoliciesButton/AddPoliciesBut
 import userService from '../../utils/userService';
 import tokenService from './../../utils/tokenService';
 
-var removePolicy;
-
 class PoliciesPage extends Component {
     constructor() {
       super();
@@ -31,6 +29,13 @@ class PoliciesPage extends Component {
       });
     }
 
+    // deletePolicy(policy) {
+    //     var index = this.state.policies.indexOf(policy);
+    //     var newArray = [...this.state.policies];
+    //     newArray.splice(index, 1);
+    //     this.setState({policies: [...newArray]});
+    // };
+
     deletePolicy(e) {
         e.preventDefault();
         fetch('/api/policies', {
@@ -45,7 +50,7 @@ class PoliciesPage extends Component {
         .then(() => {
             this.props.history.push('/policies');
         })
-    }
+      }
 
     render() {
         return (

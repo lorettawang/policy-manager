@@ -32,27 +32,31 @@ class App extends Component {
   addPolicy = (policy) => {
     this.setState ({
       Policies: [...this.state.Policies]
-    })
+    });
   }
 
   deletePolicy = (policy) => {
     this.setState ({
-      Policies: [...this.state]
-    })
-
+      Policies: [...this.state.Policies]
+    });
   }
 
   handleLogout = () => {
     userService.logout();
-    this.setState({user: null});
+    this.setState ({
+      user: null});
   }
 
   handleSignup = () => {
-    this.setState({user: userService.getUser()});
+    this.setState ({
+      user: userService.getUser()
+    });
   }
 
   handleLogin = () => {
-    this.setState({user: userService.getUser()});
+    this.setState ({
+      user: userService.getUser()
+    });
   }
 
 
@@ -112,6 +116,7 @@ class App extends Component {
                   handleLogout={this.handleLogout}
                   policies={this.state.policies} 
                   addPolicy={this.addPolicy}
+                  deletePolicy={this.deletePolicy}
                 />
                 :
                 <Redirect to='/login' />
