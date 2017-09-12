@@ -11,6 +11,8 @@ import AddPoliciesButton from '../../components/AddPoliciesButton/AddPoliciesBut
 import userService from '../../utils/userService';
 import tokenService from './../../utils/tokenService';
 
+var removePolicy;
+
 class PoliciesPage extends Component {
     constructor() {
       super();
@@ -30,6 +32,22 @@ class PoliciesPage extends Component {
       });
     }
 
+    deletePolicy(e) {
+        e.preventDefault();
+        fetch('/api/policies', {
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + tokenService.getToken()
+            }),
+            body: JSON.stringify(this.state)
+        })
+        .then(res => res.json())
+        .then(() => {
+            this.props.history.push('/policies');
+        })
+    }
+
     render() {
         return (
             <div className="PoliciesPage">
@@ -42,6 +60,7 @@ class PoliciesPage extends Component {
                 <Policy 
                     policy={policy} 
                     key={policy._id}
+                    deletePolicy={this.state.deletePolicy}
                 />
                 )}
                 <div>
