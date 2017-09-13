@@ -55,7 +55,7 @@ class Policy extends Component {
                     <br/>
                     Med Expense: {this.props.policy.med}
                     <br/>
-                    <Link className='btn btn-default' to='/editpolicies'>Edit Policies</Link>
+                    <Link className='btn btn-default' to='/editpolicies'>Edit Policy</Link>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button className="btn submit-btn-default" onClick={() => this.handleDelete(this.props.policy)}>Delete Policy</button>
                     <br/>

@@ -1,9 +1,5 @@
-.AddPoliciesPage {
+.UpdatePoliciesForm {
     display: flex;
     flex-flow: column nowrap;
     margin: 20px;
-}
-
-h2 {
-    text-align: center;
 }

@@ -22,6 +22,7 @@ const AddPoliciesPage = (props) => {
         user={props.user} 
         handleLogout={props.handleLogout} 
         />
+      <h2>Add Policy</h2>
       <PoliciesForm
         history={props.history}
       />

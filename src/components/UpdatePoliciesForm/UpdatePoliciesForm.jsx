@@ -150,9 +150,7 @@ class UpdatePoliciesForm extends Component {
           />
           <br/>
           <br/>
-            <center><Link className='btn btn-default' to='/'>Back</Link>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn submit-btn-default" onClick={this.handleChange}>Update Policy</button></center>
+            <button className="btn submit-btn-default" onClick={this.handleChange}>Update Policy</button>
         </form>
       </div>
     )

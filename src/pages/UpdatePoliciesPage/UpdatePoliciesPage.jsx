@@ -47,11 +47,12 @@ class UpdatePoliciesPage extends Component {
                 <h2>Update Policy</h2>
                 <UpdatePoliciesForm 
                     policy={this.props.policy} 
-                    key={this.props.policy._id}
+                    // key={this.props.policy._id} */}
+                    history={this.props.history}
                     updatePolicy={this.props.updatePolicy}
                 />
                 <div>
-                    <center><Link className='btn btn-default' to='/'>Back</Link>
+                    <center><Link className='btn btn-default' to='/policies'>Back</Link>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <Link className='btn btn-default' to='/addpolicies'>Add Policies</Link></center>
                 </div>
