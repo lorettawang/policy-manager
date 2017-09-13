@@ -1,9 +1,5 @@
-.LandingPage {
+.UpdatePoliciesPage {
     display: flex;
     flex-flow: column nowrap;
     margin: 20px;
-}
-
-p {
-    text-align: center;
 }

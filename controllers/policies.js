@@ -27,8 +27,13 @@ function create(req, res) {
     })
 }
 
+function updatePolicy(req, res) {
+    Policy.findByIdAndUpdate(req.params.id, req.body, (err, policy) => {
+        res.status(200).json(policy);
+    })
+}
+
 function deletePolicy(req, res) {
-    console.log("request", req);
         Policy.findById(req.params.id, (err, policy) => {
             policy.remove();
             policy.save();
@@ -39,5 +44,6 @@ function deletePolicy(req, res) {
 module.exports = {
     index,
     create,
+    update: updatePolicy,
     delete: deletePolicy
 }

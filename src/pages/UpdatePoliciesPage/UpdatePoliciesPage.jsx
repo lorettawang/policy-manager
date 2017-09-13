@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import './PoliciesPage.css';
+import './UpdatePoliciesPage.css';
 import Policy from '../../components/Policy/Policy';
 import NavBar from '../../components/NavBar/NavBar';
 import PoliciesForm from '../../components/PoliciesForm/PoliciesForm';
@@ -9,8 +9,9 @@ import PoliciesBoard from '../../components/PoliciesBoard/PoliciesBoard';
 import AddPoliciesButton from '../../components/AddPoliciesButton/AddPoliciesButton';
 import userService from '../../utils/userService';
 import tokenService from './../../utils/tokenService';
+import UpdatePoliciesForm from '../../components/UpdatePoliciesForm/UpdatePoliciesForm';
 
-class PoliciesPage extends Component {
+class UpdatePoliciesPage extends Component {
     constructor() {
       super();
       this.state = {
@@ -36,13 +37,6 @@ class PoliciesPage extends Component {
         this.setState({policies: [...newArray]});
     };
 
-    deletePolicy = (policy) => {
-        var index = this.state.policies.indexOf(policy);
-        var newArray = [...this.state.policies];
-        newArray.splice(index, 1);
-        this.setState({policies: [...newArray]});
-    }; 
-
     render() {
         return (
             <div className="PoliciesPage">
@@ -50,15 +44,12 @@ class PoliciesPage extends Component {
                     user={this.props.user}
                     handleLogout={this.props.handleLogout}
                 />
-                <h2>All Policies</h2>
-                {this.state.policies.map(policy =>
-                <Policy 
-                    policy={policy} 
-                    key={policy._id}
-                    updatePolicy={this.updatePolicy}
-                    deletePolicy={this.deletePolicy}
+                <h2>Update Policy</h2>
+                <UpdatePoliciesForm 
+                    policy={this.props.policy} 
+                    key={this.props.policy._id}
+                    updatePolicy={this.props.updatePolicy}
                 />
-                )}
                 <div>
                     <center><Link className='btn btn-default' to='/'>Back</Link>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -69,4 +60,4 @@ class PoliciesPage extends Component {
     }
 };
 
-export default PoliciesPage;
+export default UpdatePoliciesPage;

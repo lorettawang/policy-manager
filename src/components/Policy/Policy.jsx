@@ -13,33 +13,19 @@ class Policy extends Component {
         this.state= {};
     }
 
-    // handleUpdate = () => {
-
-    // }
-
-    // updatePolicy(e) {
-
-    // }
-
-    // handleDelete = () => {
-    //     policyService.delete(this.props.policy._id);
-    // }
-
-    // deletePolicy(e) {
-    //     e.preventDefault();
-    //     fetch(`/api/policies/${this.props.policy._id}`, {
-    //         method: 'DELETE',
-    //         headers: new Headers ({
-    //             'Content-Type': 'application/json',
-    //             'Authorization': 'Bearer ' + tokenService.getToken()
-    //         }),
-    //     })
-    //     .this(res => res.json())
-    //     .then(() => {
-    //         this.props.history.push('/policies');
-    //     })
-    // }
-
+    handleUpdate = (policy) => {
+        this.props.updatePolicy(policy);
+        fetch(`/api/policies/${policy._id}`, {
+            method: 'PUT',
+            headers: new Headers
+            ({'Authorization': 'Bearer ' + tokenService.getToken()}),
+            body: JSON.stringify(this.state)
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.props.history.push('/policies');
+        })
+    }
 
     handleDelete = (policy) => {
         this.props.deletePolicy(policy);
@@ -69,9 +55,8 @@ class Policy extends Component {
                     <br/>
                     Med Expense: {this.props.policy.med}
                     <br/>
-                    <button className="btn submit-btn-default" onClick={this.updatePolicy}>Edit Policy</button>
+                    <Link className='btn btn-default' to='/editpolicies'>Edit Policies</Link>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {/* <button className="btn submit-btn-default" onClick={this.deletePolicy}>Delete Policy</button> */}
                     <button className="btn submit-btn-default" onClick={() => this.handleDelete(this.props.policy)}>Delete Policy</button>
                     <br/>
                     <br/>

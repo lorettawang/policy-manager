@@ -13,6 +13,7 @@ import PoliciesPage from '../PoliciesPage/PoliciesPage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import AddPoliciesPage from '../AddPoliciesPage/AddPoliciesPage';
+import UpdatePoliciesPage from '../UpdatePoliciesPage/UpdatePoliciesPage';
 import userService from '../../utils/userService';
 
 class App extends Component {
@@ -105,6 +106,20 @@ class App extends Component {
                   history={props.history} 
                   user={this.state.user}
                   handleLogout={this.handleLogout}
+                />
+                :
+                <Redirect to ='./login' />
+            )}/>
+            <Route exact path='/editpolicies' render={(props) => (
+                userService.getUser() ?
+                <UpdatePoliciesPage 
+                  history={props.history} 
+                  user={this.state.user}
+                  handleLogout={this.handleLogout}
+                  policies={this.state.policies}
+                  addPolicy={this.addPolicy}
+                  deletePolicy={this.deletePolicy}
+
                 />
                 :
                 <Redirect to ='./login' />

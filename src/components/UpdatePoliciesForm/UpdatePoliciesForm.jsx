@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import userService from '../../utils/userService';
 import tokenService from '../../utils/tokenService';
+import UpdatePoliciesPage from '../../pages/UpdatePoliciesPage/UpdatePoliciesPage';
 
-class PoliciesForm extends Component {
+class UpdatePoliciesForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,42 +85,10 @@ class PoliciesForm extends Component {
     })
   }
 
-  // addPolicy(e) {
-  //   e.preventDefault();
-  //   fetch(`/api/policies/${e._id}`, {
-  //       method: 'POST',
-  //       headers: new Headers({
-  //           'Content-Type': 'application/json',
-  //           'Authorization': 'Bearer ' + tokenService.getToken()
-  //       }),
-  //       body: JSON.stringify(this.state)
-  //   })
-  //   .then(res => res.json())
-  //   .then(() => {
-  //       this.props.history.push('/policies');
-  //   })
-  // }
-  
-  // deletePolicy(e) {
-  //   e.preventDefault();
-  //   fetch('/api/policies', {
-  //       method: 'DELETE',
-  //       headers: new Headers({
-  //           'Content-Type': 'application/json',
-  //           'Authorization': 'Bearer ' + tokenService.getToken()
-  //       }),
-  //       body: JSON.stringify(this.state)
-  //   })
-  //   .then(res => res.json())
-  //   .then(() => {
-  //       this.props.history.push('/policies');
-  //   })
-  // }
-
   render() {
     return (
-      <div className='AddPoliciesPage'>
-        <form className="create" onSubmit={(e) => {this.create(e)}}>
+      <div className='UpdatePoliciesPage'>
+        <form className="update" onSubmit={(e) => {this.update(e)}}>
           <label htmlFor="gen">General Aggregate </label>
           <br/>
           <input id="gen" 
@@ -181,12 +150,13 @@ class PoliciesForm extends Component {
           />
           <br/>
           <br/>
-          <button className="btn submit-btn-default" onClick={this.handleSubmit}>Add Policy</button>
+            <center><Link className='btn btn-default' to='/'>Back</Link>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn submit-btn-default" onClick={this.handleChange}>Update Policy</button></center>
         </form>
       </div>
     )
   }
 }
 
-
-export default PoliciesForm;
+export default UpdatePoliciesForm;
