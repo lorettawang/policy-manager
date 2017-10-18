@@ -22,13 +22,13 @@ Click here to view the [Policy Manager App](https://policy-manager.herokuapp.com
 
 # **Next Steps**
 Unsolved problems and/or planned features:
-<br/>
+
 * Implement "Update" feature
 
 * Add different policy coverage components
-<br/>
+
 Icebox:
-<br/>
+
 * Feature to add important contact/vendor information (i.e. insurance agent, lawyer, printing company, etc)
 
 * Feature to add important documents or paperwork (i.e. business license, EIN, permits, etc)
