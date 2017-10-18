@@ -1,10 +1,5 @@
 # **Policy Manager**
-Text 
-<br/>
-
-<div style="text-align:center"><img src="https://via.placeholder.com/350x150" title="policy-manager-screenshot-1"/></div>
-<br/>
-<div style="text-align:center"><img src="https://via.placeholder.com/350x150" title="policy-manager-screenshot-2"/></div>
+Policy Manager BETA is an application for small business owners/entrepreneurs and allows management of important tasks and information regarding their business. During the early stages of creating this application, the only feature that will be implemented is the ability to add policy information. Future new feature implementations to add contact/vendor information, important documents/paperwork, general graphic assets and templates, and calendar and/or to-do lists
 <br/>
 
 # **Technologies Used**
@@ -27,6 +22,10 @@ Click here to view the [Policy Manager App](https://policy-manager.herokuapp.com
 
 # **Next Steps**
 Unsolved problems and/or planned features:
+<br/>
+* Implement "Update" feature
+
+* Add different policy coverage components
 <br/>
 <br/>
 Icebox:
