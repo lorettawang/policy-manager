@@ -27,7 +27,6 @@ Unsolved problems and/or planned features:
 
 * Add different policy coverage components
 <br/>
-<br/>
 Icebox:
 <br/>
 * Feature to add important contact/vendor information (i.e. insurance agent, lawyer, printing company, etc)
